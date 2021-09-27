@@ -1,4 +1,4 @@
-import { socketServer } from ".";
+import { socketServer } from "./index";
 import { config } from "./config";
 import { RTC_EVENTS } from "./events/event";
 import { roomList } from "./roomManager";
@@ -99,9 +99,12 @@ class User {
             this.consumers.delete(consumer.id);
             // console.log(`---consumer closed--- due to producerclose event  name:${this.peers.get(socket_id).name} consumer_id: ${consumer.id}`)
             // // tell client consumer is dead
-            socketServer?.to(this.socketId).emit(RTC_EVENTS.CLOSE_CONSUME, {
-                consumerId: consumer.id,
-            });
+            if (socketServer) {
+                socketServer.to(this.socketId).emit(RTC_EVENTS.CLOSE_CONSUME, {
+                    consumerId: consumer.id,
+                });
+            }
+           
         });
 
         return {
