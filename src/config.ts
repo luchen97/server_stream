@@ -3,7 +3,7 @@ import * as os from "os";
 const config = {
   listenIp: "103.237.144.205",
   // listenIp: "192.168.1.26",
-  listenPort: 3017,
+  listenPort: 3018,
   sslCrt: "./ssl/cert.pem",
   sslKey: "./ssl/key.pem",
 
